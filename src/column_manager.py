@@ -1,7 +1,5 @@
 from typing import Any, Callable, Optional
 
-
-
 class ColumnDefinition:
     """
     Class to define the properties of a column in a dataset.

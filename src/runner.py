@@ -1,5 +1,3 @@
-# src/runner.py
-
 import psycopg2
 from psycopg2 import sql
 from batch_generator import BatchGenerator
