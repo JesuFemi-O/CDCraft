@@ -1,5 +1,3 @@
-# src/main.py
-
 import os
 import sys
 import psycopg2
@@ -43,7 +41,6 @@ SCHEMA_EVOLVER = SchemaEvolutionController(
 
 original_schema = {}
 
-# ────────── ENTRYPOINT ────────── #
 if __name__ == "__main__":
     try:
         if not SKIP_SETUP:
