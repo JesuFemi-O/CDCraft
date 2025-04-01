@@ -1,4 +1,4 @@
-# CDC Simulation Engine
+# CDCraft - Postgresql CDC Simulation Engine
 
 Simulate real-world Change Data Capture (CDC) activity on a PostgreSQL table with evolving schema, inserts, updates, and deletes. This tool is perfect for testing streaming pipelines, Debezium connectors, or building end-to-end CDC systems.
 
