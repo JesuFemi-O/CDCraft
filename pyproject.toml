@@ -5,7 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10.7"
 dependencies = [
+    "dlt[parquet,sql-database]>=1.9.0",
     "faker>=37.1.0",
     "pip>=25.0.1",
     "psycopg2-binary>=2.9.10",
+    "pydantic>=2.11.2",
+    "s3fs>=2025.3.2",
 ]

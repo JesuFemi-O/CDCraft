@@ -8,7 +8,7 @@ from runner import run_initial_setup, run_cdc_simulation
 from cli import handle_interrupt, print_final_report
 
 # ────────── CONFIG ────────── #
-TOTAL_RECORDS = 1_000_000
+TOTAL_RECORDS = 500_000
 BATCH_SIZE = 500
 SNAPSHOT_BATCH_SIZE = 1000
 TABLE_NAME = "sales"
