@@ -58,7 +58,15 @@ brew install astral-sh/uv/uv
 uv venv              # Creates a .venv folder
 source .venv/bin/activate
 
-uv pip install -r uv.lock   # Install locked dependencies
+uv sync   # Install locked dependencies
+
+OR...
+
+uv pip install -r requirments.txt
+
+OR...
+
+pip install -r requirments.txt
 ```
 
 ### ✅ 3. Run the simulation
