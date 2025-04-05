@@ -25,9 +25,13 @@ COLUMN_POOL = [
     ColumnDefinition("promo_code", "text", lambda: random_string(5).upper()),
     ColumnDefinition("discount_rate", "float", random_float),
     ColumnDefinition("is_gift", "boolean", random_bool),
-    ColumnDefinition("created_at", "timestamp", random_timestamp),
     ColumnDefinition("sales_channel", "text", lambda: random.choice(["web", "mobile", "store"])),
     ColumnDefinition("region", "text", lambda: random.choice(["NA", "EU", "APAC"])),
+    ColumnDefinition("currency", "text", lambda: random.choice(["USD", "EUR", "GBP", "NGN"])),
+    ColumnDefinition("payment_method", "text", lambda: random.choice(["card", "paypal", "bank_transfer"])),
+    ColumnDefinition("is_returned", "boolean", random_bool),
+    ColumnDefinition("customer_tier", "text", lambda: random.choice(["bronze", "silver", "gold", "platinum"])),
+    ColumnDefinition("tax_amount", "float", lambda: round(random.uniform(0, 500), 2))
 ]
 
 
@@ -38,4 +42,8 @@ BASE_COLUMN_DEFINITIONS = [
     ColumnDefinition("quantity", "INTEGER", lambda: random.randint(1, 10), constraints="NOT NULL"),
     ColumnDefinition("total_amount", "FLOAT", lambda: round(random.uniform(5.0, 10000.0), 2), constraints="NOT NULL"),
     ColumnDefinition("purchased_at", "TIMESTAMP WITHOUT TIME ZONE", lambda: fake.date_time_between(start_date='-2y', end_date='now'), constraints="NOT NULL"),
+    ColumnDefinition("created_at", "TIMESTAMP WITHOUT TIME ZONE", lambda: datetime.utcnow(), constraints="NOT NULL DEFAULT now()"),
+    ColumnDefinition("updated_at", "TIMESTAMP WITHOUT TIME ZONE", lambda: datetime.utcnow(), constraints="NOT NULL DEFAULT now()")
 ]
+
+PROTECTED_COLUMNS = {"id", "created_at", "updated_at"}

@@ -60,13 +60,13 @@ class MutationEngine:
             return 0, deleted_count
     
     def _update_records(self, generator: BatchGenerator, ids: List[str]) -> int:
-        modifiable_columns = [col for col in generator.schema if col != "id"]
+        modifiable_columns = [col for col in generator.schema if col not in ("id", "created_at", "updated_at")]
 
         with self.conn.cursor() as cur:
             for row_id in ids:
                 col = random.choice(modifiable_columns)
                 val = generator._generate_value(col)
-                query = sql.SQL("UPDATE {}.{} SET {} = %s WHERE id = %s").format(
+                query = sql.SQL("UPDATE {}.{} SET {} = %s, updated_at = now() WHERE id = %s").format(
                     sql.Identifier(self.schema),
                     sql.Identifier(self.table_name),
                     sql.Identifier(col)

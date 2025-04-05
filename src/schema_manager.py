@@ -3,7 +3,7 @@ from psycopg2 import sql
 import random
 from typing import List, Dict, Optional
 from column_manager import ColumnDefinition
-from column_pool import BASE_COLUMN_DEFINITIONS, COLUMN_POOL
+from column_pool import BASE_COLUMN_DEFINITIONS, COLUMN_POOL, PROTECTED_COLUMNS
 
 class SchemaManager:
     def __init__(self, conn, schema="public", table_name="sales"):
@@ -13,6 +13,7 @@ class SchemaManager:
 
         self.base_column_defs: List[ColumnDefinition] = BASE_COLUMN_DEFINITIONS
         self.column_pool: List[ColumnDefinition] = COLUMN_POOL.copy()
+        random.shuffle(self.column_pool) # Shuffle the column pool for randomness
 
         # Active column definitions (dict of name: ColumnDefinition)
         self.active_columns: Dict[str, ColumnDefinition] = {
@@ -62,14 +63,14 @@ class SchemaManager:
         return col_def.name
     
     def drop_random_column(self) -> Optional[str]:
-        # might want to consider dropping from active col instead of base in the future
         candidate_columns = [
             name for name in self.active_columns
-            if name not in {col.name for col in self.base_column_defs} 
+            if name not in PROTECTED_COLUMNS 
         ]
         if not candidate_columns:
             return None
 
+        random.shuffle(candidate_columns)
         col_name = candidate_columns[0]
 
         alter_stmt = sql.SQL("ALTER TABLE {}.{} DROP COLUMN {}").format(
