@@ -193,7 +193,7 @@ loader_file_format="parquet"
 [normalize.data_writer]
 disable_compression=true
 
-``
+```
 
 
 note that I'm relying on uv so I ran `uv pip install -r requirements.txt` in the `example_pipeline` folder
