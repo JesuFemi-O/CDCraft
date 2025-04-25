@@ -198,15 +198,6 @@ Feel free to use your own image (e.g., for dev or testing) by changing the image
 
 ---
 
-⚡️ Notes
-	•	Why Buildx?
-This enables you to build x86 images even if you’re on ARM/M1 (Apple Silicon), avoiding weird platform errors.
-	•	Credentials & Endpoints:
-The stack uses local, easy-to-change credentials for Postgres, MinIO, etc.
-For production, always rotate/change these values.
-	•	Example Connectors:
-Edit the connectors/source.json and connectors/sink.json files to fit your use case.
-
 ## 🔄 Future Enhancements
 
 - CLI support with argparse
