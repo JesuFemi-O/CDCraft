@@ -12,7 +12,7 @@ TOTAL_RECORDS = 1_000_000
 BATCH_SIZE = 500
 SNAPSHOT_BATCH_SIZE = 1000
 TABLE_NAME = "sales"
-SCHEMA_NAME = os.getenv("PGSCHEMA", "internal_demo")
+SCHEMA_NAME = os.getenv("PGSCHEMA", "cdcraft_demo")
 SKIP_SETUP = os.getenv("SKIP_SETUP", "false").lower() == "true"
 ENABLE_EVOLUTION = os.getenv("ENABLE_EVOLUTION", "true").lower() == "true"
 REPLICA_IDENTITY = True
