@@ -1,0 +1,22 @@
+{
+    "name": "pg-src-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname": "postgres",
+        "database.server.name": "postgres",
+        "topic.prefix": "debezium",
+        "table.include.list": "cdcraft_demo.sales",
+        "slot.name": "sales_slot",
+        "plugin.name": "pgoutput",
+        "publication.name": "sales_pub",
+        "topic.creation.default.partitions": "1",
+        "topic.creation.default.replication.factor": "1",
+        "topic.creation.default.cleanup.policy": "compact",
+        "topic.creation.default.compression.type": "snappy"
+    }
+}
