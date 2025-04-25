@@ -134,6 +134,79 @@ Schema Evolution Summary:
 
 ---
 
+# CDCraft Example Pipeline
+
+The example directory contains a fully reproducible CDC (Change Data Capture) demo pipeline built with Docker Compose.
+
+Use it to spin up a ready-to-go stack: PostgreSQL, Kafka, Kafka Connect, MinIO, and more!
+
+---
+
+Quick Start
+
+1. change directory:
+
+```
+cd CDCraft/example
+```
+
+2. Build the custom Kafka Connect image
+
+Important: This project uses Docker Buildx to ensure cross-platform compatibility (e.g., running x86 images on Apple Silicon/M1).
+
+You must build the Kafka Connect image before bringing up the stack!
+
+```
+make build-connect
+```
+
+3. Launch the stack:
+
+```
+make up
+```
+
+
+🛠️ Common Commands
+	•	Start the stack:
+make up
+	•	Shut down & clean up:
+make down
+	•	Tail logs:
+make logs
+	•	Check available connector plugins:
+make connect-plugins
+	•	Deploy connectors:
+	•	Source (Postgres): make pg-src
+	•	Sink (S3): make s3-sink
+	•	Open UIs:
+	•	MinIO: make minio-ui
+	•	Redpanda/Kafka Console: make console-ui
+
+---
+
+🧩 Swap in Your Own Kafka Connect Image
+
+By default, the stack uses the custom image built with make build-connect:
+
+kafka-connect:
+    image: cdcraft/kafka-connect:latest
+    platform: linux/amd64
+    ...
+
+Feel free to use your own image (e.g., for dev or testing) by changing the image: line in docker-compose.yml.
+
+---
+
+⚡️ Notes
+	•	Why Buildx?
+This enables you to build x86 images even if you’re on ARM/M1 (Apple Silicon), avoiding weird platform errors.
+	•	Credentials & Endpoints:
+The stack uses local, easy-to-change credentials for Postgres, MinIO, etc.
+For production, always rotate/change these values.
+	•	Example Connectors:
+Edit the connectors/source.json and connectors/sink.json files to fit your use case.
+
 ## 🔄 Future Enhancements
 
 - CLI support with argparse
